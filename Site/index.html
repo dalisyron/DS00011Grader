@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+
+<title>CodeMirror</title>
+<meta charset="utf-8" />
+
+<link rel="stylesheet" href="lib/codemirror.css" />
+<link rel="stylesheet" href="doc/docs.css" />
+<script src="lib/codemirror.js"></script>
+<script src="mode/xml/xml.js"></script>
+<script src="mode/javascript/javascript.js"></script>
+<script src="mode/css/css.js"></script>
+<script src="mode/htmlmixed/htmlmixed.js"></script>
+<script src="addon/edit/matchbrackets.js"></script>
+
+<script src="doc/activebookmark.js"></script>
+
+<style>
+  .CodeMirror {
+    height: auto;
+    border: 1px solid #ddd;
+  }
+  .CodeMirror-scroll {
+    max-height: 200px;
+  }
+  .CodeMirror pre {
+    padding-left: 7px;
+    line-height: 1.25;
+  }
+  .banner {
+    background: #ffc;
+    padding: 6px;
+    border-bottom: 2px solid silver;
+    text-align: center;
+  }
+  .container {
+    height: 50px;
+    position: relative;
+  }
+
+  .center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+</style>
+<article>
+  <section id="description" class="first">
+    <p>
+      <strong>DS00011 Grader</strong>
+      Enter your grade report to get your grade result.
+    </p>
+  </section>
+
+  <section id="demo">
+    <h2>Grade Record JSON:</h2>
+    <form style="position: relative; margin-top: 0.5em">
+      <textarea id="demotext">
+<!-- Enter your grade record JSON here--></textarea
+      >
+    </form>
+    <script>
+      var editor = CodeMirror.fromTextArea(
+        document.getElementById("demotext"),
+        {
+          lineNumbers: true,
+          mode: "text/html",
+          matchBrackets: true,
+        }
+      );
+    </script>
+  </section>
+
+  <section id="demo">
+    <h2>Grade Policy JSON:</h2>
+    <form style="position: relative; margin-top: 0.5em">
+      <textarea id="demotext2">
+{
+  "_comment" : "Sample grade policy",
+  "assignments": [
+    {
+      "name": "C1",
+      "deadline_class": "10/4/2021 13:45:00 GMT+0330",
+      "deadline_home": "10/5/2021 23:59:59 GMT+0330",
+      "assignment_weight": null,
+      "questions": [
+        {
+          "name": "Q1",
+          "difficulty": 2,
+          "number_of_tests": 40,
+          "expected_timeout": 2000
+        }
+      ],
+      "weight": 1.4142135623730951
+    },
+    {
+      "name": "C2",
+      "deadline_class": "10/11/2021 13:30:00 GMT+0330",
+      "deadline_home": "10/12/2021 23:59:59 GMT+0330",
+      "assignment_weight": null,
+      "questions": [
+        {
+          "name": "Q1FlowerShop",
+          "difficulty": 1,
+          "number_of_tests": 12,
+          "expected_timeout": 2000
+        },
+        {
+          "name": "Q2Chocolate",
+          "difficulty": 2,
+          "number_of_tests": 17,
+          "expected_timeout": 2000
+        },
+        {
+          "name": "Q3Connectivity",
+          "difficulty": 3,
+          "number_of_tests": 33,
+          "expected_timeout": 2000
+        }
+      ],
+      "weight": 2.449489742783178
+    },
+    {
+      "name": "C3",
+      "deadline_class": "10/18/2021 13:15:00 GMT+0330",
+      "deadline_home": "10/19/2021 23:59:59 GMT+0330",
+      "assignment_weight": null,
+      "questions": [
+        {
+          "name": "Q1Array",
+          "difficulty": 1,
+          "number_of_tests": 40,
+          "expected_timeout": 2000
+        },
+        {
+          "name": "Q2Pascal",
+          "difficulty": 2,
+          "number_of_tests": 37,
+          "expected_timeout": 2000
+        },
+        {
+          "name": "Q3Lshape",
+          "difficulty": 3,
+          "number_of_tests": 14,
+          "expected_timeout": 5000
+        }
+      ],
+      "weight": 2.449489742783178
+    },
+    {
+      "name": "C4",
+      "deadline_class": "10/26/2021 23:59:59 GMT+0330",
+      "deadline_home": "10/26/2021 23:59:59 GMT+0330",
+      "assignment_weight": null,
+      "questions": [
+        {
+          "name": "Q1Toys",
+          "difficulty": 1,
+          "number_of_tests": 31,
+          "expected_timeout": 150
+        },
+        {
+          "name": "Q2Froggie",
+          "difficulty": 1,
+          "number_of_tests": 40,
+          "expected_timeout": 1500
+        }
+      ],
+      "weight": 1.4142135623730951
+    },
+    {
+      "name": "C5",
+      "deadline_class": "11/1/2021 13:15:00 GMT+0330",
+      "deadline_home": "11/2/2021 23:59:59 GMT+0330",
+      "assignment_weight": null,
+      "questions": [
+        {
+          "name": "Q1Stairs",
+          "difficulty": 1,
+          "number_of_tests": 32,
+          "expected_timeout": 5000
+        },
+        {
+          "name": "Q2LCS",
+          "difficulty": 2,
+          "number_of_tests": 10,
+          "expected_timeout": 5000
+        }
+      ],
+      "weight": 1.7320508075688772
+    },
+    {
+      "name": "C6",
+      "deadline_class": "11/22/2021 13:30:00 GMT+0330",
+      "deadline_home": "11/23/2021 23:59:59 GMT+0330",
+      "assignment_weight": null,
+      "questions": [
+        {
+          "name": "Q1Circle",
+          "difficulty": 1,
+          "number_of_tests": 36,
+          "expected_timeout": 100
+        },
+        {
+          "name": "Q2Truck",
+          "difficulty": 2,
+          "number_of_tests": 13,
+          "expected_timeout": 2000
+        }
+      ],
+      "weight": 1.7320508075688772
+    },
+    {
+      "name": "C7",
+      "deadline_class": "11/29/2021 13:15:00 GMT+0330",
+      "deadline_home": "11/30/2021 23:59:59 GMT+0330",
+      "assignment_weight": null,
+      "questions": [
+        {
+          "name": "Q1TopView",
+          "difficulty": 1,
+          "number_of_tests": 6,
+          "expected_timeout": 500
+        }
+      ],
+      "weight": 1
+    },
+    {
+      "name": "C8",
+      "deadline_class": "12/6/2021 13:15:00 GMT+0330",
+      "deadline_home": "12/7/2021 23:59:59 GMT+0330",
+      "assignment_weight": null,
+      "questions": [
+        {
+          "name": "Q1Line",
+          "difficulty": 1,
+          "number_of_tests": 34,
+          "expected_timeout": 1000
+        },
+        {
+          "name": "Q2Palindrome",
+          "difficulty": 2,
+          "number_of_tests": 70,
+          "expected_timeout": 5000
+        }
+      ],
+      "weight": 1.7320508075688772
+    },
+    {
+      "name": "C9",
+      "deadline_class": "12/22/2021 23:59:59 GMT+0330",
+      "deadline_home": "12/22/2021 23:59:59 GMT+0330",
+      "assignment_weight": null,
+      "questions": [
+        {
+          "name": "Q1Median",
+          "difficulty": 1,
+          "number_of_tests": 10,
+          "expected_timeout": 10000
+        },
+        {
+          "name": "Q2Snakes",
+          "difficulty": 2,
+          "number_of_tests": 30,
+          "expected_timeout": 10000
+        }
+      ],
+      "weight": 1.7320508075688772
+    }
+  ]
+}
+
+</textarea
+      >
+    </form>
+    <div class="container">
+      <div class="center">
+        <button onclick="getGrade()">Calculate</button>
+      </div>
+    </div>
+    <script>
+      function getAssignmentCount() {
+        var spreadSheetApp = SpreadsheetApp.getActiveSpreadsheet();
+        return spreadSheetApp
+          .getSheetByName("AssignmentData")
+          .getRange(3, 2)
+          .getValue();
+      }
+
+      function getQuestionCounts() {
+        var spreadSheetApp = SpreadsheetApp.getActiveSpreadsheet();
+        var assignmentCount = getAssignmentCount();
+        return spreadSheetApp
+          .getSheetByName("AssignmentData")
+          .getRange(2, 2, 1, assignmentCount)
+          .getValues()[0];
+      }
+
+      function createGradePolicy() {
+        var spreadSheetApp = SpreadsheetApp.getActiveSpreadsheet();
+        var sheet = spreadSheetApp.getSheetByName("QuestionData");
+        var deadlineSheet = spreadSheetApp.getSheetByName("DeadlinesData");
+
+        var assignmentCount = getAssignmentCount();
+        var questionCount = getQuestionCounts();
+        var policy = {
+          assignments: [],
+        };
+
+        var qIndex = 0;
+
+        for (var i = 0; i < assignmentCount; i++) {
+          var assignment = {
+            name: "C" + (i + 1),
+            deadline_class: deadlineSheet.getRange(i + 2, 2).getValue(),
+            deadline_home: deadlineSheet.getRange(i + 2, 3).getValue(),
+            assignment_weight: null,
+            questions: [],
+          };
+          var difficultySum = 0.0;
+
+          for (var j = 0; j < questionCount[i]; j++) {
+            var question = {
+              name: sheet.getRange(qIndex + 2, 2).getValue(),
+              difficulty: parseInt(sheet.getRange(qIndex + 2, 3).getValue()),
+              number_of_tests: parseInt(
+                sheet.getRange(qIndex + 2, 4).getValue()
+              ),
+              expected_timeout: parseInt(
+                sheet.getRange(qIndex + 2, 5).getValue()
+              ),
+            };
+            difficultySum += question.difficulty;
+            assignment.questions.push(question);
+            qIndex++;
+          }
+          assignment.weight = Math.sqrt(difficultySum);
+          policy.assignments.push(assignment);
+        }
+        return JSON.stringify(policy);
+      }
+
+      function createGradeRecord(rowNumber) {
+        var spreadSheetApp = SpreadsheetApp.getActiveSpreadsheet();
+        var classSheet = spreadSheetApp.getSheetByName("ClassWorks");
+        var excludedTestsSheet = spreadSheetApp.getSheetByName("ExcludedTests");
+        var timeoutSheet = spreadSheetApp.getSheetByName("TestTimeout");
+        var submissionTimeSheet = spreadSheetApp.getSheetByName("SubmitTimes");
+        var classActivitySheet = spreadSheetApp.getSheetByName("ClassActivity");
+        var deadlineExclusionSheet =
+          spreadSheetApp.getSheetByName("DeadlineExclusions");
+
+        var assignmentCount = getAssignmentCount();
+        var questionCount = getQuestionCounts();
+        var studentNumber = classSheet.getRange(rowNumber, 2).getValue(); // student-id is in column 2
+
+        var record = {
+          id: studentNumber.toString(),
+          assignments: [],
+        };
+
+        var qIndex = 0;
+
+        for (var i = 0; i < assignmentCount; i++) {
+          var assignment = {
+            name: "C" + (i + 1),
+            deadline_class_exclusion: null,
+            deadline_home_exclusion: null,
+            questions: [],
+            class_activity_bonus: 0,
+          };
+          var deadline_class_exclusion = deadlineExclusionSheet
+            .getRange(rowNumber, 3 + i * 2)
+            .getValue();
+          var deadline_home_exclusion = deadlineExclusionSheet
+            .getRange(rowNumber, 3 + i * 2 + 1)
+            .getValue();
+          if (deadline_class_exclusion !== "") {
+            assignment.deadline_class_exclusion = deadline_class_exclusion;
+          }
+          if (deadline_home_exclusion !== "") {
+            assignment.deadline_home_exclusion = deadline_home_exclusion;
+          }
+          var cab = classActivitySheet.getRange(rowNumber, i + 3).getValue();
+          if (Number.isInteger(cab)) {
+            assignment.class_activity_bonus = parseInt(cab);
+          }
+
+          for (var j = 0; j < questionCount[i]; j++) {
+            var questionSheet = spreadSheetApp.getSheetByName("QuestionData");
+            var solved =
+              classSheet.getRange(rowNumber, 3 + qIndex).getValue() === 1;
+            var question = {
+              name: questionSheet.getRange(qIndex + 2, 2).getValue(),
+              solved: solved,
+              meta: null,
+            };
+            if (solved) {
+              var subtime = submissionTimeSheet
+                .getRange(rowNumber, 3 + qIndex)
+                .getValue();
+              var subarr = submissionTimeSheet
+                .getRange(rowNumber, 1, 1, 20)
+                .getValues()[0];
+              question.meta = {
+                excluded_testcase_count: excludedTestsSheet
+                  .getRange(rowNumber, 3 + qIndex)
+                  .getValue(),
+                timeout_delta: timeoutSheet
+                  .getRange(rowNumber, 3 + qIndex)
+                  .getValue(),
+                submission_date: submissionTimeSheet
+                  .getRange(rowNumber, 3 + qIndex)
+                  .getValue(),
+              };
+            }
+            assignment.questions.push(question);
+            qIndex++;
+          }
+          record.assignments.push(assignment);
+        }
+
+        return JSON.stringify(record);
+      }
+
+      function getQuestionPolicy(assignment) {
+        var policy = {};
+        for (const question of assignment.questions) {
+          policy[question.name] = {};
+          policy[question.name].difficulty = question.difficulty;
+          policy[question.name].number_of_tests = question.number_of_tests;
+          policy[question.name].expected_timeout = question.expected_timeout;
+        }
+        return policy;
+      }
+
+      function getAssignmentPolicy(policy) {
+        var assignmentPolicy = {};
+        for (const assignment of policy.assignments) {
+          assignmentPolicy[assignment.name] = {};
+          assignmentPolicy[assignment.name].deadline_class =
+            assignment.deadline_class;
+          assignmentPolicy[assignment.name].deadline_home =
+            assignment.deadline_home;
+          assignmentPolicy[assignment.name].question_count =
+            assignment.questions.length;
+          assignmentPolicy[assignment.name].question_policy =
+            getQuestionPolicy(assignment);
+          assignmentPolicy[assignment.name].weight = assignment.weight;
+        }
+        return assignmentPolicy;
+      }
+
+      function addMinutes(date, minutes) {
+        return new Date(date.getTime() + minutes * 60000);
+      }
+
+      function scaleGradeForSubmissionDate(
+        grade,
+        difficulty,
+        submissionDate,
+        deadlineClass,
+        deadlineHome,
+        class_activity_bonus
+      ) {
+        deadlineClass = addMinutes(deadlineClass, class_activity_bonus * 15);
+
+        if (difficulty === 1) {
+          if (submissionDate < deadlineClass) {
+            return grade;
+          } else if (submissionDate < deadlineHome) {
+            return (85.0 / 100.0) * grade;
+          } else {
+            return 0;
+          }
+        } else if (difficulty === 2) {
+          if (submissionDate < deadlineClass) {
+            return (110.0 / 100.0) * grade;
+          } else if (submissionDate < deadlineHome) {
+            return grade;
+          } else {
+            return 0;
+          }
+        }
+      }
+
+      function scaleGradeForTimeout(grade, expectedTimeout, timeoutDelta) {
+        if (timeoutDelta > expectedTimeout) {
+          return grade * (80.0 / 100.0);
+        } else {
+          return (
+            grade -
+            ((20.0 * (timeoutDelta / parseFloat(expectedTimeout))) / 100.0) *
+              grade
+          );
+        }
+      }
+
+      function scaleGradeForTestExclusion(grade, numberOfTests, excludedCount) {
+        return (
+          ((numberOfTests - excludedCount) / parseFloat(excludedCount)) * grade
+        );
+      }
+
+      function getUnweightedGradeForAssignment(assignment, assignmentPolicy) {
+        var totalGrade = 0.0;
+        var questionCount = 0;
+
+        for (const question of assignment.questions) {
+          var difficulty =
+            assignmentPolicy[assignment.name].question_policy[question.name]
+              .difficulty;
+          if (difficulty === 3) {
+            continue;
+          }
+          if (question.solved) {
+            var deadlineClass =
+              assignmentPolicy[assignment.name].deadline_class;
+            var deadlineHome = assignmentPolicy[assignment.name].deadline_home;
+            if (assignment.deadline_class_exclusion != null) {
+              deadlineClass = assignment.deadline_class_exclusion;
+            }
+            if (assignment.deadline_home_exclusion != null) {
+              deadlineHome = assignment.deadline_home_exclusion;
+            }
+            var submissionDate = question.meta.submission_date;
+            var grade = scaleGradeForSubmissionDate(
+              100,
+              difficulty,
+              new Date(submissionDate),
+              new Date(deadlineClass),
+              new Date(deadlineHome),
+              assignment.class_activity_bonus
+            );
+            var expectedTimeout =
+              assignmentPolicy[assignment.name].question_policy[question.name]
+                .expected_timeout;
+            var timeoutDelta = question.meta.timeout_delta;
+            grade = scaleGradeForTimeout(grade, expectedTimeout, timeoutDelta);
+            totalGrade += grade;
+          }
+          questionCount++;
+        }
+        var resultGrade = totalGrade / parseFloat(questionCount);
+        return resultGrade;
+      }
+
+      function getGradeHelper(record, policy) {
+        var assignmentPolicy = getAssignmentPolicy(policy);
+        var score = 0.0;
+        var weightSum = 0.0;
+
+        for (const assignment of record.assignments) {
+          var weight = assignmentPolicy[assignment.name].weight;
+          var unweightedScore = getUnweightedGradeForAssignment(
+            assignment,
+            assignmentPolicy
+          );
+          weightSum += weight;
+          score += unweightedScore * weight;
+        }
+
+        return score / weightSum;
+      }
+
+      function getGrade() {
+		var editor = document.querySelectorAll('.CodeMirror');
+		var editorRecord = editor[0].CodeMirror;
+		var editorPolicy = editor[1].CodeMirror;
+		console.log('record value = ' + editorRecord.getValue());
+        var record = JSON.parse(editorRecord.getValue());
+        var policy = JSON.parse(editorPolicy.getValue());
+        var result = getGradeHelper(record, policy);
+		var gradeResultText = document.getElementById("grade_result");
+		gradeResultText.innerHTML = result.toString();
+		console.log('done')
+      }
+    </script>
+
+    <script>
+      var editor = CodeMirror.fromTextArea(
+        document.getElementById("demotext2"),
+        {
+          lineNumbers: true,
+          mode: "text/html",
+          matchBrackets: true,
+        }
+      );
+    </script>
+  </section>
+	<h3 id="grade_result">Test</h3>
+</article>
